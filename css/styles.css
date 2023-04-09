@@ -1,82 +1,35 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-}
-  
-.grid-container {
-display: grid;
-flex-wrap: wrap;
-max-width: 100%;
-}
-
-.grid-cell {
-box-sizing: border-box;
-border: 1px solid black;
-}
-
-.start {
-background-color: green;
-}
-
-.end {
-background-color: red;
-}
-
-.white {
-background-color: white;
-}
-
-.black {
-background-color: black;
-}
-
-.green-border {
-border-color: green;
-}
-
-.path {
-background-color: red;
-width: 15px;
-height: 15px;
-transition: background-color 0.3s;
+    font-family: Arial, sans-serif;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
 }
-  
-.grid-settings {
-display: flex;
-gap: 8px;
-align-items: center;
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(15, 20px);
+    grid-template-rows: repeat(15, 20px);
+    grid-gap: 0.5px;
+    border: 1px solid black;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    cursor: pointer;
 }
 
 .buttons {
-display: flex;
-gap: 8px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 button {
-background-color: #007BFF;
-color: white;
-border: none;
-border-radius: 4px;
-padding: 8px 16px;
-font-size: 14px;
-cursor: pointer;
-}
-
-button:hover {
-background-color: #0056B3;
-}
-
-button:active {
-background-color: #004085;
+    padding: 5px 10px;
+    cursor: pointer;
 }
