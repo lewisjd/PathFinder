@@ -5,36 +5,42 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
-  }
+}
   
-  .grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-  }
-  
-  .grid-cell {
-    box-sizing: border-box;
-    border: 1px solid black;
-  }
-  
-  .start {
-    background-color: green;
-  }
-  
-  .end {
-    background-color: red;
-  }
-  
-  .white {
-    background-color: white;
-  }
-  
-  .black {
-    background-color: black;
-  }
-  
-  .green-border {
-    border-color: green;
-  }
-  
+.grid-container {
+display: flex;
+flex-wrap: wrap;
+max-width: 100%;
+}
+
+.grid-cell {
+box-sizing: border-box;
+border: 1px solid black;
+}
+
+.start {
+background-color: green;
+}
+
+.end {
+background-color: red;
+}
+
+.white {
+background-color: white;
+}
+
+.black {
+background-color: black;
+}
+
+.green-border {
+border-color: green;
+}
+
+.path {
+background-color: red;
+width: 15px;
+height: 15px;
+transition: background-color 0.3s;
+}

@@ -174,12 +174,12 @@ function findShortestRoute() {
 
 function drawPath(path) {
     path.forEach((idx, i) => {
-        if (i > 0 && i < path.length - 1) {
-            const cell = gridContainer.children[idx];
-            cell.style.backgroundColor = "red";
-            cell.style.width = "15px";
-            cell.style.height = "15px";
-        }
+      if (i > 0 && i < path.length - 1) {
+        setTimeout(() => {
+          const cell = gridContainer.children[idx];
+          cell.classList.add("path");
+        }, i * 100);
+      }
     });
 }
     
