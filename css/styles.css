@@ -8,7 +8,7 @@ body {
 }
   
 .grid-container {
-display: flex;
+display: grid;
 flex-wrap: wrap;
 max-width: 100%;
 }
