@@ -204,11 +204,3 @@ function undo() {
         }
     }
 }
-
-// Attach event listeners to each cell
-for (const cell of cells) {
-  cell.addEventListener('mousedown', handleMouseDown);
-  cell.addEventListener('mouseover', handleMouseOver);
-  cell.addEventListener('mouseup', handleMouseUp);
-  cell.addEventListener('contextmenu', handleContextMenu);
-}
