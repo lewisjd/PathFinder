@@ -120,11 +120,16 @@ function undoLastAction() {
     if (actionHistory.length === 0) return;
 
     const lastAction = actionHistory.pop();
-    lastAction.forEach(({ cell, wasSelected }) => {
+    lastAction.forEach(({ cell, wasSelected, wasPath }) => {
         if (wasSelected) {
             cell.classList.add('selected');
         } else {
             cell.classList.remove('selected');
+        }
+        if (wasPath) {
+            cell.classList.add('path');
+        } else {
+            cell.classList.remove('path');
         }
     });
 }
@@ -157,9 +162,14 @@ function findPath() {
 
     const path = bfs(startPoint, endPoint);
     if (path) {
-        for (const cell of path) {
+        // Exclude the start cell by starting the loop from index 1
+        const pathAction = [];
+        for (let i = 1; i < path.length; i++) {
+            const cell = path[i];
             cell.classList.add('path');
+            pathAction.push({ cell: cell, wasPath: false });
         }
+        actionHistory.push(pathAction);
     } else {
         alert('No path found between start and end points.');
     }
