@@ -16,6 +16,9 @@ const endBtn = document.getElementById('end');
 startBtn.addEventListener('click', () => setStartEndMode('start'));
 endBtn.addEventListener('click', () => setStartEndMode('end'));
 
+const findPathBtn = document.getElementById('find-path');
+findPathBtn.addEventListener('click', findPath);
+
 
 let isDrawing = false;
 let currentColor = 'black';
@@ -145,3 +148,71 @@ function setStartEndMode(mode) {
 
 // Generate initial grid
 generateGrid();
+
+function findPath() {
+    if (!startPoint || !endPoint) {
+        alert('Please set both start and end points.');
+        return;
+    }
+
+    const path = bfs(startPoint, endPoint);
+    if (path) {
+        for (const cell of path) {
+            cell.classList.add('path');
+        }
+    } else {
+        alert('No path found between start and end points.');
+    }
+}
+
+function bfs(start, end) {
+    const queue = [{ cell: start, path: [] }];
+    const visited = new Set();
+
+    while (queue.length > 0) {
+        const { cell, path } = queue.shift();
+        if (cell === end) {
+            return path;
+        }
+
+        if (visited.has(cell) || cell.classList.contains('selected')) {
+            continue;
+        }
+
+        visited.add(cell);
+
+        for (const neighbor of getNeighbors(cell)) {
+            if (!visited.has(neighbor) && !neighbor.classList.contains('selected')) {
+                queue.push({ cell: neighbor, path: [...path, cell] });
+            }
+        }
+    }
+
+    return null;
+}
+
+function getNeighbors(cell) {
+    const neighbors = [];
+    const row = cell.parentElement;
+    const i = Array.from(row.children).indexOf(cell);
+    const j = Array.from(row.parentElement.children).indexOf(row);
+
+    const directions = [
+        { x: 1, y: 0 },
+        { x: -1, y: 0 },
+        { x: 0, y: 1 },
+        { x: 0, y: -1 },
+    ];
+
+    for (const { x, y } of directions) {
+        const newRow = gridContainer.children[j + y];
+        if (newRow) {
+            const newCell = newRow.children[i + x];
+            if (newCell) {
+                neighbors.push(newCell);
+            }
+        }
+    }
+
+    return neighbors;
+}

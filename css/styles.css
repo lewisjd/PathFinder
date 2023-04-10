@@ -52,3 +52,7 @@ body {
 .cell.end {
     background-color: #e74c3c;
 }
+
+.cell.path {
+    background-color: #3498db;
+}
