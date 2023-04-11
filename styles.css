@@ -23,6 +23,7 @@ body {
     height: 20px;
     border: 1px solid #ccc;
     cursor: pointer;
+    background-color: #ffffff;
 }
 
 .cell.selected {
