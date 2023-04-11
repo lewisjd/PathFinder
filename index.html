@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Drawing</title>
     <link rel="stylesheet" href="styles.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';">
 </head>
 <body>
     <div class="container">
@@ -25,10 +25,6 @@
           <button id="start" class="color-btn">Start</button>
           <button id="end" class="color-btn">End</button>
           <button id="find-path" class="color-btn">Find Path</button>
-        </div>
-        <div class="image-controls">
-            <label for="maze-image">Upload Maze Image:</label>
-            <input type="file" id="maze-image" accept="image/*">
         </div>
     </div>
     <script src="script.js"></script>
