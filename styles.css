@@ -52,6 +52,10 @@ body {
     margin-top: 20px;
 }
 
+.image-controls {
+    margin-top: 20px;
+}
+
 .cell.start {
     background-color: #2ecc71;
 }

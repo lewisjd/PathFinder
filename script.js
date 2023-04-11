@@ -152,6 +152,57 @@ function setStartEndMode(mode) {
     }
 }
 
+const mazeImageInput = document.getElementById('maze-image');
+mazeImageInput.addEventListener('change', handleMazeImage);
+
+function handleMazeImage(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const image = new Image();
+    image.src = URL.createObjectURL(file);
+    image.onload = function() {
+        // Process the image and create the grid
+        createGridFromImage(image);
+    };
+}
+
+function createGridFromImage(image) {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    const width = image.width;
+    const height = image.height;
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(image, 0, 0, width, height);
+
+    const imageData = context.getImageData(0, 0, width, height).data;
+
+    // Update the width and height input values
+    widthInput.value = width;
+    heightInput.value = height;
+
+    generateGrid();
+
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            const index = (i * width + j) * 4;
+            const r = imageData[index];
+            const g = imageData[index + 1];
+            const b = imageData[index + 2];
+            const cell = gridContainer.rows[i].cells[j];
+
+            // Determine if the pixel is closer to black or white
+            if (r + g + b < 255 * 3 / 2) {
+                cell.classList.add('selected');
+            } else {
+                cell.classList.remove('selected');
+            }
+        }
+    }
+}
+
+
 // Generate initial grid
 generateGrid();
 
