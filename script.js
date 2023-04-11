@@ -177,10 +177,12 @@ function createGridFromImage(image) {
     context.drawImage(image, 0, 0, width, height);
 
     const imageData = context.getImageData(0, 0, width, height).data;
+    console.log('Image data:', imageData);
 
     // Update the width and height input values
     widthInput.value = width;
     heightInput.value = height;
+    console.log('Width and height:', width, height);
 
     generateGrid();
 
