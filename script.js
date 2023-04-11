@@ -164,8 +164,15 @@ function handleMazeImage(event) {
         const image = new Image();
         image.src = e.target.result;
         image.onload = function() {
+            // Create a temporary canvas to draw the image
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(image, 0, 0);
+
             // Process the image and create the grid
-            createGridFromImage(image);
+            createGridFromImage(ctx);
         };
     };
     reader.readAsDataURL(file);
@@ -180,7 +187,7 @@ function createGridFromImage(image) {
     canvas.height = height;
     context.drawImage(image, 0, 0, width, height);
 
-    const imageData = context.getImageData(0, 0, width, height).data;
+    const imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height).data;
 
     // Update the width and height input values
     widthInput.value = width;
