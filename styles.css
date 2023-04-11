@@ -18,12 +18,17 @@ body {
     border-collapse: collapse;
 }
 
+:root {
+    --max-cell-size: 20px;
+}
+
 .cell {
-    width: 20px;
-    height: 20px;
+    width: calc(min(var(--max-cell-size), 100vw / var(--grid-width) - 2px));
+    height: calc(min(var(--max-cell-size), 100vw / var(--grid-width) - 2px));
     border: 1px solid #ccc;
     cursor: pointer;
     background-color: #ffffff;
+    box-sizing: border-box;
 }
 
 .cell.selected {

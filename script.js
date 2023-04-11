@@ -32,6 +32,7 @@ let endPoint = null;
 function generateGrid() {
     const width = parseInt(widthInput.value);
     const height = parseInt(heightInput.value);
+    document.documentElement.style.setProperty('--grid-width', width);
     gridContainer.addEventListener('dragstart', (e) => e.preventDefault());
     gridContainer.innerHTML = '';
 
