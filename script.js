@@ -159,12 +159,16 @@ function handleMazeImage(event) {
     const file = event.target.files[0];
     if (!file) return;
 
-    const image = new Image();
-    image.src = URL.createObjectURL(file);
-    image.onload = function() {
-        // Process the image and create the grid
-        createGridFromImage(image);
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = function() {
+            // Process the image and create the grid
+            createGridFromImage(image);
+        };
     };
+    reader.readAsDataURL(file);
 }
 
 function createGridFromImage(image) {
